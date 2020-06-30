@@ -8,7 +8,7 @@ export default function CouponForm(props) {
       <Grid item xs={12} md={6}>
         <Paper>
           <TextField
-            label="Coupon Code"
+            label="쿠폰코드"
             style={{ padding: 8 }}
             placeholder="16자리"
             fullWidth
@@ -17,7 +17,7 @@ export default function CouponForm(props) {
               shrink: true,
             }}
             inputProps={{
-              maxlength: 16,
+              maxLength: 16,
               style: {
                 textTransform: "uppercase",
                 fontSize: "larger",
@@ -29,7 +29,7 @@ export default function CouponForm(props) {
             required
           />
           <TextField
-            label="Players"
+            label="게임 ID"
             placeholder="한줄에 ID 1개 입력 (ex. QLTQT4578)"
             style={{ padding: 8 }}
             multiline

@@ -1,17 +1,16 @@
 import Head from "next/head";
-import { AppBar, Toolbar, Typography, CssBaseline } from "@material-ui/core";
+import { AppBar, Toolbar, Typography } from "@material-ui/core";
 
 export default function AppHeader() {
   return (
     <>
       <Head>
-        <title>CROB COUPON</title>
+        <title>쿠키런 쿠폰 입력</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <CssBaseline />
       <AppBar position="fixed">
         <Toolbar>
-          <Typography variant="h4">CROB</Typography>
+          <Typography variant="h4">쿠오븐 쿠폰 대량 입력</Typography>
         </Toolbar>
       </AppBar>
       <Toolbar />
@@ -20,9 +19,6 @@ export default function AppHeader() {
         body {
           padding: 0;
           margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
           width: 100%;
           height: 100%;
         }
