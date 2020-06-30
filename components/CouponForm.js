@@ -5,7 +5,7 @@ export default function CouponForm(props) {
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs={6}>
+      <Grid item xs={12} md={6}>
         <Paper>
           <TextField
             label="Coupon Code"
@@ -52,7 +52,7 @@ export default function CouponForm(props) {
           />
         </Paper>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} md={6}>
         <div className={classes.buttonArea}>
           <Button
             variant="contained"
