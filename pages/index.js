@@ -51,8 +51,13 @@ export default function Index() {
           // too_many_err: false
           // use_limit_over: 0
           const errData = err.response.data;
-          if (errData.use_limit_over > 0) arrResult.push(arrMid[i] + " 이미 사용한 쿠폰 ㅠㅠ");
-          if (errData.expired === true) arrResult.push(arrMid[i] + " 만료된 쿠폰 ㅠㅠ");
+          if (errData.use_limit_over > 0) {
+            arrResult.push(arrMid[i] + " 이미 사용한 쿠폰 ㅠㅠ");
+          } else if (errData.expired === true) {
+            arrResult.push(arrMid[i] + " 만료된 쿠폰 ㅠㅠ");
+          } else {
+            arrResult.push(arrMid[i] + " 알 수 없는 오류 ㅠㅠ");
+          }
         })
     }
 
