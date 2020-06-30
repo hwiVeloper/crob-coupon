@@ -7,7 +7,7 @@ export default function Index() {
   const [couponCode, setCouponCode] = useState("");
   const [result, setResult] = useState("");
 
-  const _submit = () => {
+  const _submit = async () => {
     if (mids.length === 0 || couponCode.length === 0) {
       alert("빈값은 허용되지 않습니다.");
       return;
@@ -32,59 +32,32 @@ export default function Index() {
     }
 
     let arrResult = new Array();
-
+    arrResult.push("*** " + couponCode + " 입력결과 ***")
     for (let i = 0; i < arrMid.length; i++) {
       const formData = new FormData();
       formData.set("mid", arrMid[i]);
       formData.set("coupon_code", couponCode);
       formData.set("combo_name", "dc_coupon");
 
-      // axios({
-      //   method: "post",
-      //   url: "https://coupon.devsgb.com/coupon/use",
-      //   data: formData,
-      //   headers: {
-      //     accept: "application/json, text/plain, */*",
-      //     "accept-language": "ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7",
-      //     "access-control-allow-origin": "*",
-      //     "content-type": "application/x-www-form-urlencoded",
-      //     // "sec-fetch-dest": "empty",
-      //     // "sec-fetch-mode": "cors",
-      //     // "sec-fetch-site": "cross-site",
-      //   },
-      //   referrer: "https://www.cookierun.com/ko/coupon",
-      //   referrerPolicy: "no-referrer-when-downgrade",
-      //   body: "mid=QLTQT4578&coupon_code=STRIKELIKEANINJA&combo_name=dc_coupon",
-      //   method: "POST",
-      //   mode: "cors",
-      //   credentials: "omit",
-      // })
-      axios
+      await axios
         .post("https://coupon.devsgb.com/coupon/use", formData)
         .then((res) => {
-          console.log(res);
+          arrResult.push(arrMid[i] + " 입력 성공!");
         })
         .catch((err) => {
-          console.error(err);
-        });
+          // already_used: false
+          // error_msg: ""
+          // expired: false
+          // too_many_err: false
+          // use_limit_over: 0
+          const errData = err.response.data;
+          if (errData.use_limit_over > 0) arrResult.push(arrMid[i] + " 이미 사용한 쿠폰 ㅠㅠ");
+          if (errData.expired === true) arrResult.push(arrMid[i] + " 만료된 쿠폰 ㅠㅠ");
+        })
     }
-    //   fetch("https://coupon.devsgb.com/coupon/use", {
-    //   "headers": {
-    //     "accept": "application/json, text/plain, */*",
-    //     "accept-language": "ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7",
-    //     "access-control-allow-origin": "*",
-    //     "content-type": "application/x-www-form-urlencoded",
-    //     "sec-fetch-dest": "empty",
-    //     "sec-fetch-mode": "cors",
-    //     "sec-fetch-site": "cross-site"
-    //   },
-    //   "referrer": "https://www.cookierun.com/ko/coupon",
-    //   "referrerPolicy": "no-referrer-when-downgrade",
-    //   "body": "mid=QLTQT4578&coupon_code=STRIKELIKEANINJA&combo_name=dc_coupon",
-    //   "method": "POST",
-    //   "mode": "cors",
-    //   "credentials": "omit"
-    // });
+
+    if (arrResult.length > 0) setResult(arrResult.join("\n"));
+    else setResult("결과가 없습니다 ㅠㅠ");
   };
 
   const _reset = () => {
