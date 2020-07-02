@@ -33,6 +33,18 @@ export default function AppHeader() {
           content="쿠오븐 쿠폰 대량 입력 페이지입니다."
         />
         {/* <meta property="og:image" content="" /> */}
+        {/* Global site tag (gtag.js) - Google Analytics */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=UA-99293532-4"
+        ></script>
+        <script jsx>{`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'UA-99293532-4');
+        `}</script>
       </Head>
       <AppBar position="fixed">
         <Toolbar>

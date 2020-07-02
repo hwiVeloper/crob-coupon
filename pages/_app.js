@@ -4,7 +4,6 @@ import { Container, Box, CssBaseline } from "@material-ui/core";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import React, { useEffect } from "react";
 import CookieRunBold from "../fonts/CookieRunBold.otf";
-import { initGA, logPageView } from "../util/ga";
 
 const cookierun = {
   fontFamily: "CookieRunBold",
@@ -38,12 +37,6 @@ function App({ Component, pageProps }) {
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
-
-    if (!window.GA_INITIALIZED) {
-      initGA();
-      window.GA_INITIALIZED = true;
-    }
-    logPageView();
   }, []);
 
   return (
