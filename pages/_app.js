@@ -4,11 +4,12 @@ import { Container, Box, CssBaseline } from "@material-ui/core";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import React, { useEffect } from "react";
 import CookieRunBold from "../fonts/CookieRunBold.otf";
+import { initGA, logPageView } from "../util/ga";
 
 const cookierun = {
-  fontFamily: 'CookieRunBold',
-  fontStyle: 'normal',
-  fontDisplay: 'swap',
+  fontFamily: "CookieRunBold",
+  fontStyle: "normal",
+  fontDisplay: "swap",
   fontWeight: 400,
   src: `
     local('CookieRunBold'),
@@ -19,12 +20,12 @@ const cookierun = {
 
 const theme = createMuiTheme({
   typography: {
-    fontFamily: 'CookieRunBold, Arial',
+    fontFamily: "CookieRunBold, Arial",
   },
   overrides: {
     MuiCssBaseline: {
-      '@global': {
-        '@font-face': [cookierun],
+      "@global": {
+        "@font-face": [cookierun],
       },
     },
   },
@@ -33,25 +34,31 @@ const theme = createMuiTheme({
 function App({ Component, pageProps }) {
   useEffect(() => {
     // Remove the server-side injected CSS.
-    const jssStyles = document.querySelector('#jss-server-side');
+    const jssStyles = document.querySelector("#jss-server-side");
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
+
+    if (!window.GA_INITIALIZED) {
+      initGA();
+      window.GA_INITIALIZED = true;
+    }
+    logPageView();
   }, []);
 
   return (
     <>
       <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <AppHeader />
-      <Container maxWidth="lg">
-        <Box my={2} style={{ height: "100%" }}>
-          <Component {...pageProps} />
-        </Box>
-      </Container>
-      {/* <AppFooter /> */}
+        <CssBaseline />
+        <AppHeader />
+        <Container maxWidth="lg">
+          <Box my={2} style={{ height: "100%" }}>
+            <Component {...pageProps} />
+          </Box>
+        </Container>
+        {/* <AppFooter /> */}
 
-      <style>{`jsx
+        <style>{`jsx
         html,
         body,
         body > div:first-child,
