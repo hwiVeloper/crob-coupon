@@ -1,11 +1,15 @@
 import CouponForm from "../components/CouponForm";
 import { useState } from "react";
 import * as axios from "axios";
+import { Backdrop, CircularProgress, makeStyles } from "@material-ui/core";
 
 export default function Index() {
   const [mids, setMids] = useState("");
   const [couponCode, setCouponCode] = useState("");
   const [result, setResult] = useState("");
+  const [open, setOpen] = useState(false);
+
+  const classes = useStyles();
 
   const _submit = async () => {
     if (mids.length === 0 || couponCode.length === 0) {
@@ -31,8 +35,10 @@ export default function Index() {
       }
     }
 
+    setOpen(true);
+
     let arrResult = new Array();
-    arrResult.push("*** " + couponCode + " 입력결과 ***")
+    arrResult.push("*** " + couponCode + " 입력결과 ***");
     for (let i = 0; i < arrMid.length; i++) {
       const formData = new FormData();
       formData.set("mid", arrMid[i]);
@@ -59,6 +65,9 @@ export default function Index() {
             arrResult.push(arrMid[i] + " 알 수 없는 오류 ㅠㅠ");
           }
         })
+        .finally(() => {
+          setOpen(false);
+        });
     }
 
     if (arrResult.length > 0) setResult(arrResult.join("\n"));
@@ -72,15 +81,27 @@ export default function Index() {
   };
 
   return (
-    <CouponForm
-      mids={mids}
-      handleSetMids={setMids}
-      couponCode={couponCode}
-      handleSetCouponCode={setCouponCode}
-      result={result}
-      handleSetResult={setResult}
-      handleSubmit={_submit}
-      handleReset={_reset}
-    />
+    <>
+      <Backdrop className={classes.backdrop} open={open}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
+      <CouponForm
+        mids={mids}
+        handleSetMids={setMids}
+        couponCode={couponCode}
+        handleSetCouponCode={setCouponCode}
+        result={result}
+        handleSetResult={setResult}
+        handleSubmit={_submit}
+        handleReset={_reset}
+      />
+    </>
   );
 }
+
+const useStyles = makeStyles((theme) => ({
+  backdrop: {
+    zIndex: 999999,
+    color: "#fff",
+  },
+}));

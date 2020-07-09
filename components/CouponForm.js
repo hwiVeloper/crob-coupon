@@ -87,10 +87,10 @@ export default function CouponForm(props) {
               style: {
                 textTransform: "uppercase",
               },
-              readyOnly: true,
             }}
             value={props.result}
             onChange={(event) => props.handleSetResult(event.target.value)}
+            readOnly={true}
           />
         </Paper>
       </Grid>

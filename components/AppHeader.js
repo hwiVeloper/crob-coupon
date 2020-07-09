@@ -8,8 +8,8 @@ export default function AppHeader() {
         <title>쿠오븐 쿠폰 대량 입력</title>
         <link rel="icon" href="/favicon.ico" />
 
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta charSet="UTF-8" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"
@@ -41,9 +41,9 @@ export default function AppHeader() {
         <script jsx>{`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
+          gtag("js", new Date());
 
-          gtag('config', 'UA-99293532-4');
+          gtag("config", "UA-99293532-4");
         `}</script>
       </Head>
       <AppBar position="fixed">
