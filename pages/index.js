@@ -66,9 +66,10 @@ export default function Index() {
           }
         })
         .finally(() => {
-          setOpen(false);
         });
     }
+    
+    setOpen(false);
 
     if (arrResult.length > 0) setResult(arrResult.join("\n"));
     else setResult("결과가 없습니다 ㅠㅠ");
