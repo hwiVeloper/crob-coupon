@@ -1,7 +1,8 @@
-import CouponForm from "../components/CouponForm";
-import { useState } from "react";
-import * as axios from "axios";
 import { Backdrop, CircularProgress, makeStyles } from "@material-ui/core";
+import * as axios from "axios";
+import { useState } from "react";
+import CouponForm from "../components/CouponForm";
+import { VersionInfo } from "../components/VersionInfo";
 
 export default function Index() {
   const [mids, setMids] = useState("");
@@ -22,12 +23,8 @@ export default function Index() {
       return;
     }
 
-    console.log(couponCode);
-    console.log(mids);
-
     let arrMid = new Array();
     arrMid = mids.split("\n");
-    console.log(arrMid);
     for (let i = 0; i < arrMid.length; i++) {
       if (arrMid[i].length !== 9) {
         alert("아이디는 9자리입니다.");
@@ -65,10 +62,9 @@ export default function Index() {
             arrResult.push(arrMid[i] + " 알 수 없는 오류 ㅠㅠ");
           }
         })
-        .finally(() => {
-        });
+        .finally(() => {});
     }
-    
+
     setOpen(false);
 
     if (arrResult.length > 0) setResult(arrResult.join("\n"));

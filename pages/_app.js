@@ -2,8 +2,10 @@ import AppHeader from "../components/AppHeader";
 import AppFooter from "../components/AppFooter";
 import { Container, Box, CssBaseline } from "@material-ui/core";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import CookieRunBold from "../fonts/CookieRunBold.otf";
+import "../styles.css";
+import { VersionInfo } from "../components/VersionInfo";
 
 const cookierun = {
   fontFamily: "CookieRunBold",
@@ -39,28 +41,31 @@ function App({ Component, pageProps }) {
     }
   }, []);
 
+  const [openVersionInfo, setOpenVersionInfo] = useState(false);
+
+  const _handleVersionInfoOpen = () => {
+    setOpenVersionInfo(true);
+  };
+
+  const _handleVersionInfoClose = () => {
+    setOpenVersionInfo(false);
+  };
+
   return (
     <>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <AppHeader />
+        <AppHeader handleOpen={_handleVersionInfoOpen} />
         <Container maxWidth="lg">
           <Box my={2} style={{ height: "100%" }}>
             <Component {...pageProps} />
           </Box>
         </Container>
+        <VersionInfo
+          open={openVersionInfo}
+          handleClose={_handleVersionInfoClose}
+        />
         {/* <AppFooter /> */}
-
-        <style>{`jsx
-        html,
-        body,
-        body > div:first-child,
-        div#__next {
-          height: 100%;
-        } {
-          height: 100%;
-        }
-      `}</style>
       </ThemeProvider>
     </>
   );

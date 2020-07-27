@@ -1,7 +1,16 @@
 import Head from "next/head";
-import { AppBar, Toolbar, Typography } from "@material-ui/core";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  makeStyles,
+} from "@material-ui/core";
 
-export default function AppHeader() {
+export default function AppHeader(props) {
+  const classes = useStyles();
+
+  const { handleOpen } = props;
   return (
     <>
       <Head>
@@ -38,7 +47,7 @@ export default function AppHeader() {
           async
           src="https://www.googletagmanager.com/gtag/js?id=UA-99293532-4"
         ></script>
-        <script jsx>{`
+        <script jsx={true}>{`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag("js", new Date());
@@ -48,23 +57,27 @@ export default function AppHeader() {
       </Head>
       <AppBar position="fixed">
         <Toolbar>
-          <Typography variant="h4">쿠오븐 쿠폰 대량 입력</Typography>
+          <Typography variant="h5" className={classes.title}>
+            쿠오븐 쿠폰 대량 입력
+          </Typography>
+          <Button color="inherit" onClick={handleOpen}>
+            v1.0.1
+          </Button>
         </Toolbar>
       </AppBar>
       <Toolbar />
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          width: 100%;
-          height: 100%;
-        }
-
-        * {
-          box-sizing: border-box;
-        }
-      `}</style>
     </>
   );
 }
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
