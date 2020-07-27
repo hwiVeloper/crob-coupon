@@ -1,6 +1,6 @@
 export const updateContent = [
   {
-    date: "2020.07.25",
+    date: "2020.07.26",
     version: "1.0.1",
     description: `* 쿠폰 입력 시, 로딩 애니메이션 추가.\n* 버전정보 표기`,
   },
