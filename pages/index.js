@@ -2,7 +2,6 @@ import { Backdrop, CircularProgress, makeStyles } from "@material-ui/core";
 import * as axios from "axios";
 import { useState } from "react";
 import CouponForm from "../components/CouponForm";
-import { VersionInfo } from "../components/VersionInfo";
 
 export default function Index() {
   const [mids, setMids] = useState("");
@@ -26,7 +25,11 @@ export default function Index() {
     let arrMid = new Array();
     arrMid = mids.split("\n");
     for (let i = 0; i < arrMid.length; i++) {
-      if (arrMid[i].length !== 9) {
+      let tmpMid = arrMid[i].trim();
+      if (tmpMid.length == 0) {
+        continue;
+      }
+      if (arrMid[i].trim().length !== 9) {
         alert("아이디는 9자리입니다.");
         return;
       }
@@ -37,15 +40,20 @@ export default function Index() {
     let arrResult = new Array();
     arrResult.push("*** " + couponCode + " 입력결과 ***");
     for (let i = 0; i < arrMid.length; i++) {
+      if (arrMid[i].trim().length === 0) continue;
+
+      let tmpMid = arrMid[i].trim();
+
       const formData = new FormData();
-      formData.set("mid", arrMid[i]);
+
+      formData.set("mid", tmpMid);
       formData.set("coupon_code", couponCode);
       formData.set("combo_name", "dc_coupon");
 
       await axios
         .post("https://coupon.devsgb.com/coupon/use", formData)
         .then((res) => {
-          arrResult.push(arrMid[i] + " 입력 성공!");
+          arrResult.push(tmpMid + " 입력 성공!");
         })
         .catch((err) => {
           // already_used: false
@@ -55,11 +63,11 @@ export default function Index() {
           // use_limit_over: 0
           const errData = err.response.data;
           if (errData.use_limit_over > 0) {
-            arrResult.push(arrMid[i] + " 이미 사용한 쿠폰 ㅠㅠ");
+            arrResult.push(tmpMid + " 이미 사용한 쿠폰 ㅠㅠ");
           } else if (errData.expired === true) {
-            arrResult.push(arrMid[i] + " 만료된 쿠폰 ㅠㅠ");
+            arrResult.push(tmpMid + " 만료된 쿠폰 ㅠㅠ");
           } else {
-            arrResult.push(arrMid[i] + " 알 수 없는 오류 ㅠㅠ");
+            arrResult.push(tmpMid + " 알 수 없는 오류 ㅠㅠ");
           }
         })
         .finally(() => {});

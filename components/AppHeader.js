@@ -47,7 +47,7 @@ export default function AppHeader(props) {
           async
           src="https://www.googletagmanager.com/gtag/js?id=UA-99293532-4"
         ></script>
-        <script jsx={true}>{`
+        <script jsx="true">{`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag("js", new Date());
@@ -61,7 +61,7 @@ export default function AppHeader(props) {
             쿠오븐 쿠폰 대량 입력
           </Typography>
           <Button color="inherit" onClick={handleOpen}>
-            v1.0.1
+            {"v" + process.env.appVersion}
           </Button>
         </Toolbar>
       </AppBar>

@@ -1,20 +1,15 @@
 import {
-  Button, Dialog,
-
-
-  DialogActions, DialogContent,
-
-
-  DialogContentText, DialogTitle,
-
-
-
-
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
   List,
   ListItem,
   ListItemText,
-
-  makeStyles, Typography
+  makeStyles,
+  Typography,
 } from "@material-ui/core";
 import React from "react";
 import { updateContent } from "../constants/UpdateContent";
@@ -38,7 +33,7 @@ export const VersionInfo = (props) => {
         </DialogContentText>
         <List>
           {updateContent.map((item) => (
-            <ListItem>
+            <ListItem key={item.version}>
               <ListItemText
                 primary={"v" + item.version + " (" + item.date + ")"}
                 secondary={

@@ -1,11 +1,10 @@
-import AppHeader from "../components/AppHeader";
-import AppFooter from "../components/AppFooter";
-import { Container, Box, CssBaseline } from "@material-ui/core";
+import { Box, Container, CssBaseline } from "@material-ui/core";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import React, { useEffect, useState } from "react";
+import AppHeader from "../components/AppHeader";
+import { VersionInfo } from "../components/VersionInfo";
 import CookieRunBold from "../fonts/CookieRunBold.otf";
 import "../styles.css";
-import { VersionInfo } from "../components/VersionInfo";
 
 const cookierun = {
   fontFamily: "CookieRunBold",
