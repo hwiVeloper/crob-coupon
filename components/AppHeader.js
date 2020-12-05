@@ -43,6 +43,9 @@ export default function AppHeader(props) {
         />
         {/* <meta property="og:image" content="" /> */}
         {/* Global site tag (gtag.js) - Google Analytics */}
+        <script jsx="true">{`
+          window.location.replace("https://crob-lab.netlify.app");
+        `}</script>
         <script
           async
           src="https://www.googletagmanager.com/gtag/js?id=UA-99293532-4"
