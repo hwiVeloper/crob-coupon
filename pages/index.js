@@ -87,7 +87,7 @@ export default function Index() {
 
   return (
     <>
-      <Backdrop className={classes.backdrop} open={open}>
+      {/* <Backdrop className={classes.backdrop} open={open}>
         <CircularProgress color="inherit" />
       </Backdrop>
       <CouponForm
@@ -99,7 +99,7 @@ export default function Index() {
         handleSetResult={setResult}
         handleSubmit={_submit}
         handleReset={_reset}
-      />
+      /> */}
     </>
   );
 }

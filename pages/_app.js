@@ -1,4 +1,4 @@
-import { Box, Container, CssBaseline } from "@material-ui/core";
+import { Box, Container, CssBaseline, Link, Typography } from "@material-ui/core";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import React, { useEffect, useState } from "react";
 import AppHeader from "../components/AppHeader";
@@ -54,12 +54,16 @@ function App({ Component, pageProps }) {
     <>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <AppHeader handleOpen={_handleVersionInfoOpen} />
-        <Container maxWidth="lg">
-          <Box my={2} style={{ height: "100%" }}>
-            <Component {...pageProps} />
+        {/* <AppHeader handleOpen={_handleVersionInfoOpen} /> */}
+        {/* <Container maxWidth="lg"> */}
+          <Box my={2} style={{ height: "100%", textAlign: 'center' }}>
+            {/* <Component {...pageProps} /> */}
+            <Typography variant="h3">
+              사이트 통합되었습니다.<br />
+              <Link href={`https://crob-lab.netlify.app`}>https://crob-lab.netlify.app</Link>
+            </Typography>
           </Box>
-        </Container>
+        {/* </Container> */}
         <VersionInfo
           open={openVersionInfo}
           handleClose={_handleVersionInfoClose}
