@@ -54,21 +54,21 @@ function App({ Component, pageProps }) {
     <>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        {/* <AppHeader handleOpen={_handleVersionInfoOpen} /> */}
-        {/* <Container maxWidth="lg"> */}
           <Box my={2} style={{ height: "100%", textAlign: 'center' }}>
-            {/* <Component {...pageProps} /> */}
-            <Typography variant="h3">
-              사이트 통합되었습니다.<br />
+            <Typography variant="h4">
+              사이트 통합되었습니다.
+            </Typography>
+            <Typography variant="h4">
               <Link href={`https://crob-lab.netlify.app`}>https://crob-lab.netlify.app</Link>
             </Typography>
+            <Typography variant="h6">
+              (현재 페이지는 2020년까지만 유지됩니다.)
+            </Typography>
           </Box>
-        {/* </Container> */}
         <VersionInfo
           open={openVersionInfo}
           handleClose={_handleVersionInfoClose}
         />
-        {/* <AppFooter /> */}
       </ThemeProvider>
     </>
   );
