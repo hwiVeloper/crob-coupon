@@ -59,7 +59,7 @@ function App({ Component, pageProps }) {
               사이트 통합되었습니다.
             </Typography>
             <Typography variant="h4">
-              <Link href={`https://crob-lab.netlify.app`}>https://crob-lab.netlify.app</Link>
+              <Link href={`https://crob-lab.hwiveloper.dev`}>https://crob-lab.hwiveloper.dev</Link>
             </Typography>
             <Typography variant="h6">
               (현재 페이지는 2020년까지만 유지됩니다.)
